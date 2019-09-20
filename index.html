@@ -6,6 +6,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Google Map Integration</title>
     <style>
+        #outwrap {
+            display: flex;
+        }
+        #outwrap li span {
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        #outwrap li .subs {
+            cursor: pointer;
+        }
         #map {
           height: 400px;
           width: 400px;
@@ -13,36 +23,16 @@
       </style>    
 </head>
 <body>
+    <button id="check-markers">TEST ME!</button>
+    <button id="hide">HIDE</button>
+    <button id="show">SHOW</button>
+    <div id="outwrap">
+        <div id="map"></div>
+        <div id="list-wrap"></div>        
+    </div>
 
-    <div id="map"></div>    
-
-    <script>
-        function initMap() {
-            var directionsService = new google.maps.DirectionsService();
-            var directionsRenderer = new google.maps.DirectionsRenderer();
-            var map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 7,
-                center: {lat: 11.6736127, lng: 118.1260972}
-            });
-            directionsRenderer.setMap(map);
-            directionsService.route(
-                {
-                    origin: {query: "tabing ilog marilao, bulacan"},
-                    destination: {query: "poblacion 2 marilao, bulacan"},
-                    travelMode: 'DRIVING'
-                },
-                function(response, status) {
-                    if (status === 'OK') {
-                        directionsRenderer.setDirections(response);
-                    } else {
-                        window.alert('Directions request failed due to ' + status);
-                    }
-                }
-            );
-        }      
-    </script>
-  <script async defer src="https://maps.googleapis.com/maps/api/js?key=SECRET&callback=initMap"
-  type="text/javascript"></script>
-
+  <script src="https://maps.googleapis.com/maps/api/js?key=SECRET"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script async defer src="map.js"></script>
 </body>
 </html>
